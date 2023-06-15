@@ -1,0 +1,37 @@
+﻿@page "/payment"
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+
+<h1>Payment</h1>
+
+<EditForm Model="@PaymentModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="InputCardNumber">Card Number</label>
+        <InputText id="InputCardNumber" class="form-control" @bind-Value="@PaymentModel.CardNumber" />
+    </div>
+
+    <div class="form-group">
+        <label for="InputExpirationDate">Expiration Date</label>
+        <InputText id="InputExpirationDate" class="form-control" @bind-Value="@PaymentModel.ExpirationDate" />
+    </div>
+
+    <div class="form-group">
+        <label for="InputCVV">CVV</label>
+        <InputText id="InputCVV" class="form-control" @bind-Value="@PaymentModel.CVV" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Payment</button>
+</EditForm>
+
+@code {
+    private PaymentModel PaymentModel { get; set; } = new PaymentModel();
+
+    private async Task HandleValidSubmit()
+    {
+        
+        NavigationManager.NavigateTo("/order-confirmation");
+    }
+}

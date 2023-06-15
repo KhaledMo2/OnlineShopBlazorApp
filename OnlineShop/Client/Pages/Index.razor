@@ -1,0 +1,71 @@
+﻿@page "/"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Product Categories</h3>
+<CartSummary cartItemCount="itemCounter" />
+
+    @foreach (var category in Categories)
+    {
+    <h2>@category.Name</h2>
+    <div class="row">
+
+                @foreach (var product in GetProductsByCategory(category.Id))
+                {
+                     <div class="col-md-4">
+                        <ProductItem Product="product" AddToCart="@(() => AddToCart(product))" />
+                     </div>
+                 }
+        </div>
+    }
+
+
+@code {
+    private static List<Product> Products = new List<Product>();
+    private static List<ProductCategory> Categories = new List<ProductCategory>(); // Replace this with your actual data structure
+    private static CartItem cartItem = new CartItem();
+    int itemCounter;
+
+    // This method is called when the component is initialized
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await Http.GetFromJsonAsync<List<Product>>("api/Products");
+        if (result != null)
+        {
+            Products = result;
+        }
+        // Initialize your categories and products here
+        var catresult = await Http.GetFromJsonAsync<List<ProductCategory>>("api/ProductCategories");
+        if (catresult != null)
+        {
+            Categories = catresult;
+        }
+    }
+
+    protected async Task AddToCart(Product product)
+    {
+        // Implement the logic to add the product to the shopping cart
+        // You can use a service or manage the cart data in the component itself
+        cartItem.ProductId = product.Id;
+        var response = await Http.PostAsJsonAsync("api/CartItems", cartItem);
+        var cartresult = await Http.GetFromJsonAsync<List<CartItem>>("api/CartItems");
+        if (cartresult != null)
+        {
+            itemCounter = cartresult.Count();
+
+        }
+        
+
+
+    }
+
+    List<Product> GetProductsByCategory(int categoryId)
+    {
+        // Retrieve products by category from your data source
+        // This is just a sample implementation
+        var products = Products.Where(p => p.CategoryId == categoryId).ToList();
+        return products;
+    }
+
+    // Rest of the code remains the same
+}

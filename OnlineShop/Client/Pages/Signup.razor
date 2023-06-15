@@ -1,0 +1,36 @@
+﻿@page "/signup"
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+
+
+<h3>Sign Up</h3>
+
+<form>
+    <div class="form-group">
+        <label for="username">UserName</label>
+        <input type="text" id="email" @bind="username" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" @bind="password" class="form-control" />
+    </div>
+    <button type="submit" @onclick="SignUp">Sign Up</button>
+    <p>Already have an account? <a href="/login">Login</a></p>
+</form>
+
+@code {
+    string username;
+    string password;
+
+    protected static UserModel user = new UserModel();
+
+    void SignUp()
+    {
+        user.UserName = username;
+        user.Password = password;
+
+        var response =  Http.PostAsJsonAsync("api/Auth/register", user);
+
+        NavigationManager.NavigateTo("/");
+    }
+}

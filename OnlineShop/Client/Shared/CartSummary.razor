@@ -1,0 +1,30 @@
+﻿@inject NavigationManager NavigationManager
+@inject HttpClient Http
+
+<div class="cart-summary">
+    <p>Items in Cart: @cartItemCount</p>
+    <button @onclick="GoToCart">Go to Cart</button>
+</div>
+
+@code {
+    [Parameter]
+    public int cartItemCount { get; set; } 
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Initialize your categories and products here
+        var cartresult = await Http.GetFromJsonAsync<List<CartItem>>("api/CartItems");
+        if (cartresult != null)
+        {
+            cartItemCount = cartresult.Count();
+
+        }
+
+    }
+
+    void GoToCart()
+    {
+        NavigationManager.NavigateTo("/ShoppingCart");
+    }
+}

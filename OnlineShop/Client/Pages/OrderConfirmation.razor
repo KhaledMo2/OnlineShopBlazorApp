@@ -1,0 +1,31 @@
+﻿@page "/order-confirmation"
+@inject HttpClient Http
+
+<h1>Order Confirmation</h1>
+
+<p>Thank you for your order!</p>
+<p>Your order has been successfully processed.</p>
+
+@code {
+    List<CartItem> cartItems = new List<CartItem>(); 
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var cartresult = await Http.GetFromJsonAsync<List<CartItem>>("api/CartItems");
+        if (cartresult != null)
+        {
+            cartItems = cartresult;
+        }
+
+        foreach (var carditem in cartItems)
+        {
+               await Http.DeleteAsync($"api/CartItems/{carditem.Id}");
+               StateHasChanged();
+            }
+
+        }
+        
+
+ }
+

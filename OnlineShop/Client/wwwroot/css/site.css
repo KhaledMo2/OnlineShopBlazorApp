@@ -1,0 +1,122 @@
+﻿
+/* Add more custom styles as needed */
+/* ...existing styles... */
+
+/* Global Styles */
+
+
+.container {
+    max-width: 960px;
+}
+
+/* Navigation Menu */
+.navbar {
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px;
+    color: #fff;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #f8f9fa;
+    }
+
+.badge-counter {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+/* Page Header */
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+
+    .page-header h1 {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+/* Footer */
+.footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* ...existing styles... */
+/* ...existing styles... */
+/* ...existing styles... */
+
+/* Shopping Cart Page */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+    .cart-table th,
+    .cart-table td {
+        padding: 10px;
+        border: 1px solid #dee2e6;
+    }
+
+    .cart-table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        text-align: left;
+    }
+
+/* Product Component */
+.product-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .product-item img {
+        max-width: 100px;
+        margin-right: 20px;
+    }
+
+    .product-item .product-details {
+        flex-grow: 1;
+    }
+
+        .product-item .product-details h5 {
+            margin: 0 0 5px;
+        }
+
+        .product-item .product-details p {
+            margin: 0;
+            color: #6c757d;
+        }
+
+/* ...existing styles... */
+
+
+/* ...existing styles... */

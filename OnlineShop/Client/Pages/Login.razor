@@ -1,0 +1,40 @@
+﻿@page "/login"
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+
+<h1>Login</h1>
+
+<EditForm Model="@UserModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="InputUsername">Username</label>
+        <InputText id="InputUsername" class="form-control" @bind-Value="@UserModel.UserName" />
+    </div>
+
+    <div class="form-group">
+        <label for="InputPassword">Password</label>
+        <InputText id="InputPassword" class="form-control" @bind-Value="@UserModel.Password" type="password" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</EditForm>
+
+@code {
+    private UserModel UserModel { get; set; } = new UserModel();
+
+    private async Task HandleValidSubmit()
+    {
+        var response = await HttpClient.PostAsJsonAsync("/api/Auth/login", UserModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var token = await response.Content.ReadAsStringAsync();
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+        }
+    }
+}
