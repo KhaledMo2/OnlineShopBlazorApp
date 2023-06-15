@@ -1,7 +1,7 @@
-OnlineShop/Client/bin/
-OnlineShop/Server/bin/
-OnlineShop/Shared/bin/
-OnlineShop/.vs/
-OnlineShop/Server/obj/
-OnlineShop/Client/obj/
-OnlineShop/Shared/obj/
+Client/bin/
+Server/bin/
+Shared/bin/
+.vs/
+Server/obj/
+Client/obj/
+Shared/obj/
