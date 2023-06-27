@@ -1,9 +1,5 @@
 # OnlineShop App
 
-## Contributors
-Khaled Mohamed  Mtnr. 768676
-Yasser Hamed  Mtnr. 762335
-
 The OnlineShop App is a web application built using Blazor WebAssembly. It serves as an online shop platform, allowing users to browse and purchase products from various categories.
 
 ## Project Structure
